@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sugestões de Evolução Estratégica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #C0636A;
+    --rose-light: #F5EAEB;
+    --rose-mid: #E8C4C6;
+    --rose-dark: #7A3A3E;
+    --gold: #B8903A;
+    --gold-light: #F7F1E6;
+    --gold-mid: #E8D5A8;
+    --ink: #1E1A1B;
+    --ink-soft: #3D3438;
+    --muted: #7A7075;
+    --surface: #FDFAF9;
+    --white: #FFFFFF;
+    --border: rgba(30,26,27,0.1);
+    --border-accent: rgba(192,99,106,0.25);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(192,99,106,0.04) 40px,
+      rgba(192,99,106,0.04) 41px
+    );
+  }
+
+  .cover-top-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 100%);
+  }
+
+  .cover-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 32px;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--white);
+    max-width: 720px;
+    margin-bottom: 12px;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    color: var(--rose-mid);
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 64px;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--rose);
+    margin-bottom: 40px;
+    opacity: 0.6;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+  }
+
+  .cover-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cover-meta-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .cover-meta-value {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .cover-bottom {
+    padding: 40px 80px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-index {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .cover-index-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cover-index-num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--rose);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cover-index-title {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+  }
+
+  /* LAYOUT */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 80px;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 56px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 100px;
+    font-weight: 300;
+    line-height: 0.85;
+    color: var(--rose-mid);
+    min-width: 80px;
+    margin-top: 8px;
+    opacity: 0.6;
+  }
+
+  .section-text {
+    flex: 1;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  .section-spacer {
+    height: 80px;
+  }
+
+  /* STATUS BOX */
+  .status-box {
+    background: var(--gold-light);
+    border: 1px solid var(--gold-mid);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .status-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--gold-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .status-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .status-text {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* PILLAR CARDS */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+
+  .pillar-card {
+    background: var(--white);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pillar-card.primary {
+    background: var(--ink);
+  }
+
+  .pillar-pct {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--rose);
+  }
+
+  .pillar-card.primary .pillar-pct {
+    color: var(--rose-mid);
+  }
+
+  .pillar-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: var(--rose-light);
+    color: var(--rose-dark);
+    width: fit-content;
+  }
+
+  .pillar-card.primary .pillar-badge {
+    background: rgba(192,99,106,0.2);
+    color: var(--rose-mid);
+  }
+
+  .pillar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .pillar-card.primary .pillar-name {
+    color: var(--white);
+  }
+
+  .pillar-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .pillar-card.primary .pillar-desc {
+    color: rgba(255,255,255,0.45);
+  }
+
+  .pillar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .pillar-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .pillar-card.primary .pillar-tag {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ENEMY SECTION */
+  .enemy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .enemy-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 24px;
+    background: var(--white);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .enemy-strike {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--rose-light);
+    border: 1px solid var(--rose-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--rose);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .enemy-text {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* BENEFITS ROW */
+  .benefits-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 40px;
+  }
+
+  .benefit-item {
+    background: var(--rose-light);
+    padding: 20px 18px;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .benefit-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--rose-dark);
+    line-height: 1.4;
+  }
+
+  /* QUOTE CARDS */
+  .quote-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .quote-card {
+    border-left: 3px solid var(--rose);
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0 4px 4px 0;
+    padding: 24px 28px;
+  }
+
+  .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--rose-mid);
+    margin-bottom: 8px;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .quote-text strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--rose-dark);
+  }
+
+  /* FUNNEL */
+  .funnel-wrapper {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .funnel-stage {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .funnel-stage:last-child {
+    border-bottom: none;
+  }
+
+  .funnel-label-col {
+    padding: 28px 28px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--surface);
+  }
+
+  .funnel-stage-num {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--rose);
+    margin-bottom: 6px;
+  }
+
+  .funnel-stage-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .funnel-stage-goal {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .funnel-content-col {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .funnel-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .funnel-row-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 70px;
+    padding-top: 2px;
+  }
+
+  .funnel-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .funnel-tag {
+    font-size: 11.5px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    background: var(--rose-light);
+    border: 1px solid var(--rose-mid);
+    color: var(--rose-dark);
+  }
+
+  .funnel-tag.neutral {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--muted);
+  }
+
+  /* FINAL SECTION */
+  .final-section {
+    background: var(--ink);
+    padding: 80px;
+    margin-top: 80px;
+  }
+
+  .final-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 24px;
+  }
+
+  .final-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.25;
+    max-width: 640px;
+    margin-bottom: 40px;
+  }
+
+  .final-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .final-pillar {
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+  }
+
+  .final-pillar-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(192,99,106,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .final-pillar-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 8px;
+  }
+
+  .final-pillar-desc {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.6;
+  }
+
+  /* PAGE BREAK */
+  .break { margin: 80px 0; border: none; border-top: 1px solid var(--border); }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--rose-light) 0%, #fdf5f5 100%);
+    border: 1px solid var(--rose-mid);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin: 40px 0;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .highlight-box-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--rose-dark);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .highlight-box-stat {
+    text-align: center;
+    min-width: 120px;
+    padding-left: 24px;
+    border-left: 1px solid var(--rose-mid);
+  }
+
+  .highlight-box-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--rose);
+    margin-bottom: 4px;
+  }
+
+  .highlight-box-label {
+    font-size: 11px;
+    color: var(--rose-dark);
+    font-weight: 500;
+  }
+
+  @media print {
+    .cover { page-break-after: always; }
+    .page { padding: 60px; }
+    .final-section { padding: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+  <div class="cover-top-bar"></div>
+  <div class="cover-pattern"></div>
+  <div class="cover-content">
+    <div class="cover-label">Documento Estratégico · Marca Pessoal</div>
+    <h1 class="cover-title">Sugestões de<br>Evolução <em>Estratégica</em></h1>
+    <p class="cover-subtitle">Posicionamento &amp; Conteúdo</p>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Objetivo</span>
+        <span class="cover-meta-value">Crescimento e Diferenciação</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Foco</span>
+        <span class="cover-meta-value">Liderança Feminina</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Formato</span>
+        <span class="cover-meta-value">Planejamento Estratégico</span>
+      </div>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-index">
+      <div class="cover-index-item">
+        <span class="cover-index-num">01</span>
+        <span class="cover-index-title">Estrutura de Pilares de Conteúdo</span>
+      </div>
+      <div class="cover-index-item">
+        <span class="cover-index-num">02</span>
+        <span class="cover-index-title">Inimigo Conceitual</span>
+      </div>
+      <div class="cover-index-item">
+        <span class="cover-index-num">03</span>
+        <span class="cover-index-title">Quebra de Crenças</span>
+      </div>
+      <div class="cover-index-item">
+        <span class="cover-index-num">04</span>
+        <span class="cover-index-title">Funil de Conteúdo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEÇÃO 1 -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-text">
+      <div class="section-eyebrow">Pilares de Conteúdo</div>
+      <h2 class="section-title">Estrutura Hierárquica</h2>
+      <p class="section-desc">Os pilares atuais contemplam temas relevantes, mas podem gerar dispersão para novas seguidoras. A sugestão é criar uma hierarquia clara com um eixo central unificador.</p>
+    </div>
+  </div>
+
+  <div class="status-box">
+    <div class="status-icon">📋</div>
+    <div>
+      <div class="status-label">Situação Atual</div>
+      <div class="status-text">Temas: desenvolvimento pessoal, empreendedorismo, relacionamento, espiritualidade, marketing, gestão de pessoas, comportamento humano. Estrutura rica, porém sem hierarquia visual clara para novos públicos.</div>
+    </div>
+  </div>
+
+  <div class="pillar-grid">
+    <div class="pillar-card primary">
+      <div class="pillar-pct">70%</div>
+      <div class="pillar-badge">Pilar Principal</div>
+      <div class="pillar-name">Liderança Feminina</div>
+      <div class="pillar-desc">Todos os temas convergem para a construção da identidade da mulher que lidera sua vida, carreira, negócios e relações.</div>
+      <div class="pillar-tags">
+        <span class="pillar-tag">Identidade</span>
+        <span class="pillar-tag">Protagonismo</span>
+        <span class="pillar-tag">Autonomia</span>
+      </div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-pct">20%</div>
+      <div class="pillar-badge">Pilar Secundário</div>
+      <div class="pillar-name">Empreendedorismo &amp; Crescimento</div>
+      <div class="pillar-desc">Conteúdos ligados a negócios, posicionamento, gestão e construção de autoridade profissional.</div>
+      <div class="pillar-tags">
+        <span class="pillar-tag">Negócios</span>
+        <span class="pillar-tag">Gestão</span>
+        <span class="pillar-tag">Autoridade</span>
+        <span class="pillar-tag">Produtividade</span>
+      </div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-pct">10%</div>
+      <div class="pillar-badge">Humanização</div>
+      <div class="pillar-name">Conexão &amp; Bastidores</div>
+      <div class="pillar-desc">Relacionamento, espiritualidade, rotina e vulnerabilidades que fortalecem o vínculo emocional.</div>
+      <div class="pillar-tags">
+        <span class="pillar-tag">Bastidores</span>
+        <span class="pillar-tag">Rotina</span>
+        <span class="pillar-tag">Espiritualidade</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-box-text">
+      A hierarquia não reduz a diversidade de temas — ela cria um fio condutor que dá coerência à narrativa da marca, facilitando a identificação de novas seguidoras.
+    </div>
+    <div class="highlight-box-stat">
+      <div class="highlight-box-num">3</div>
+      <div class="highlight-box-label">Pilares estratégicos</div>
+    </div>
+  </div>
+</div>
+
+<hr class="break" style="max-width:900px;margin:0 auto">
+
+<!-- SEÇÃO 2 -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-text">
+      <div class="section-eyebrow">Diferenciação</div>
+      <h2 class="section-title">Inimigo Conceitual</h2>
+      <p class="section-desc">Grandes marcas pessoais fortalecem seu posicionamento através da oposição a ideias e comportamentos prejudiciais. Não se trata de criar conflito, mas de criar <strong>clareza</strong>.</p>
+    </div>
+  </div>
+
+  <div class="enemy-grid">
+    <div class="enemy-card">
+      <div class="enemy-strike">✕</div>
+      <div class="enemy-text">Produtividade tóxica</div>
+    </div>
+    <div class="enemy-card">
+      <div class="enemy-strike">✕</div>
+      <div class="enemy-text">Síndrome da mulher que carrega tudo sozinha</div>
+    </div>
+    <div class="enemy-card">
+      <div class="enemy-strike">✕</div>
+      <div class="enemy-text">Empreendedorismo performático</div>
+    </div>
+    <div class="enemy-card">
+      <div class="enemy-strike">✕</div>
+      <div class="enemy-text">Liderança baseada em controle</div>
+    </div>
+    <div class="enemy-card">
+      <div class="enemy-strike">✕</div>
+      <div class="enemy-text">Cultura da exaustão como símbolo de sucesso</div>
+    </div>
+    <div class="enemy-card">
+      <div class="enemy-strike">✕</div>
+      <div class="enemy-text">Modelo masculino de liderança reproduzido sem adaptação</div>
+    </div>
+  </div>
+
+  <div class="benefits-row">
+    <div class="benefit-item">
+      <span class="benefit-icon">⬆</span>
+      <div class="benefit-label">Maior diferenciação</div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">◎</span>
+      <div class="benefit-label">Lembrança de marca</div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">↗</span>
+      <div class="benefit-label">Mais compartilhamentos</div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">◈</span>
+      <div class="benefit-label">Construção de tribo</div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">◻</span>
+      <div class="benefit-label">Clareza de posicionamento</div>
+    </div>
+  </div>
+</div>
+
+<hr class="break" style="max-width:900px;margin:0 auto">
+
+<!-- SEÇÃO 3 -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-text">
+      <div class="section-eyebrow">Autoridade</div>
+      <h2 class="section-title">Quebra de Crenças</h2>
+      <p class="section-desc">Adicionar conteúdos que provoquem reflexão através de confronto construtivo, ampliando o alcance orgânico e posicionamento memorável.</p>
+    </div>
+  </div>
+
+  <div class="quote-stack">
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">Você não está sobrecarregada porque falta tempo.<br><strong>Você está sobrecarregada porque assumiu responsabilidades que não deveriam ser suas.</strong></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text"><strong>Nem toda mulher forte é uma boa líder.</strong></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">Resolver tudo sozinha não é independência.<br><strong>É exaustão.</strong></div>
+    </div>
+  </div>
+
+  <div class="status-box" style="background:var(--rose-light);border-color:var(--rose-mid);">
+    <div class="status-icon" style="background:var(--rose-mid);">→</div>
+    <div>
+      <div class="status-label" style="color:var(--rose);">Oportunidade</div>
+      <div class="status-text">Esses formatos geram maior alcance orgânico, maior retenção, fortalecimento de autoridade e posicionamento mais memorável — complementando o tom de acolhimento já estabelecido.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="break" style="max-width:900px;margin:0 auto">
+
+<!-- SEÇÃO 4 -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-text">
+      <div class="section-eyebrow">Conversão</div>
+      <h2 class="section-title">Funil de Conteúdo</h2>
+      <p class="section-desc">Estruturar uma jornada clara que transforma a audiência em futuras clientes, desde a identificação até a oferta de transformação guiada.</p>
+    </div>
+  </div>
+
+  <div class="funnel-wrapper">
+    <div class="funnel-stage">
+      <div class="funnel-label-col">
+        <div class="funnel-stage-num">ETAPA 01</div>
+        <div class="funnel-stage-name">Topo de Funil</div>
+        <div class="funnel-stage-goal">Atrair mulheres que vivem dores universais</div>
+      </div>
+      <div class="funnel-content-col">
+        <div class="funnel-row">
+          <span class="funnel-row-label">Formatos</span>
+          <div class="funnel-tags">
+            <span class="funnel-tag">Reels</span>
+            <span class="funnel-tag">Histórias</span>
+            <span class="funnel-tag">Quebras de crença</span>
+            <span class="funnel-tag">Identificação</span>
+          </div>
+        </div>
+        <div class="funnel-row">
+          <span class="funnel-row-label">Temas</span>
+          <div class="funnel-tags">
+            <span class="funnel-tag neutral">Sobrecarga</span>
+            <span class="funnel-tag neutral">Culpa</span>
+            <span class="funnel-tag neutral">Autocobrança</span>
+            <span class="funnel-tag neutral">Limites</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="funnel-stage">
+      <div class="funnel-label-col">
+        <div class="funnel-stage-num">ETAPA 02</div>
+        <div class="funnel-stage-name">Meio de Funil</div>
+        <div class="funnel-stage-goal">Transformar identificação em consciência</div>
+      </div>
+      <div class="funnel-content-col">
+        <div class="funnel-row">
+          <span class="funnel-row-label">Ferramentas</span>
+          <div class="funnel-tags">
+            <span class="funnel-tag">Quiz</span>
+            <span class="funnel-tag">Diagnósticos</span>
+            <span class="funnel-tag">Materiais ricos</span>
+            <span class="funnel-tag">Comunidade</span>
+          </div>
+        </div>
+        <div class="funnel-row">
+          <span class="funnel-row-label">Exemplo</span>
+          <div class="funnel-tags">
+            <span class="funnel-tag neutral">"Qual perfil de liderança feminina você possui hoje?"</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="funnel-stage">
+      <div class="funnel-label-col">
+        <div class="funnel-stage-num">ETAPA 03</div>
+        <div class="funnel-stage-name">Captura</div>
+        <div class="funnel-stage-goal">Reduzir dependência das redes sociais</div>
+      </div>
+      <div class="funnel-content-col">
+        <div class="funnel-row">
+          <span class="funnel-row-label">Canais</span>
+          <div class="funnel-tags">
+            <span class="funnel-tag">WhatsApp</span>
+            <span class="funnel-tag">E-mail</span>
+            <span class="funnel-tag">Comunidade fechada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="funnel-stage">
+      <div class="funnel-label-col">
+        <div class="funnel-stage-num">ETAPA 04</div>
+        <div class="funnel-stage-name">Nutrição</div>
+        <div class="funnel-stage-goal">Construir confiança</div>
+      </div>
+      <div class="funnel-content-col">
+        <div class="funnel-row">
+          <span class="funnel-row-label">Conteúdos</span>
+          <div class="funnel-tags">
+            <span class="funnel-tag">Casos reais</span>
+            <span class="funnel-tag">Histórias de transformação</span>
+            <span class="funnel-tag">Bastidores</span>
+            <span class="funnel-tag">Frameworks</span>
+            <span class="funnel-tag">Metodologias</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="funnel-stage">
+      <div class="funnel-label-col">
+        <div class="funnel-stage-num">ETAPA 05</div>
+        <div class="funnel-stage-name">Conversão</div>
+        <div class="funnel-stage-goal">Transformação guiada</div>
+      </div>
+      <div class="funnel-content-col">
+        <div class="funnel-row">
+          <span class="funnel-row-label">Formatos</span>
+          <div class="funnel-tags">
+            <span class="funnel-tag">Mentoria</span>
+            <span class="funnel-tag">Comunidade</span>
+            <span class="funnel-tag">Programa de acompanhamento</span>
+            <span class="funnel-tag">Curso</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div class="final-section">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="final-label">Consideração Final</div>
+    <p class="final-title">O posicionamento atual possui bases sólidas de profundidade, acolhimento e autoridade. As sugestões ampliam — sem alterar — a essência da marca.</p>
+
+    <div class="final-pillars">
+      <div class="final-pillar">
+        <div class="final-pillar-icon">⬆</div>
+        <div class="final-pillar-title">Crescimento</div>
+        <div class="final-pillar-desc">Ampliar a capacidade de atrair e reter uma audiência qualificada e engajada.</div>
+      </div>
+      <div class="final-pillar">
+        <div class="final-pillar-icon">◎</div>
+        <div class="final-pillar-title">Diferenciação</div>
+        <div class="final-pillar-desc">Criar uma marca memorável com posicionamento claro no universo da liderança feminina.</div>
+      </div>
+      <div class="final-pillar">
+        <div class="final-pillar-icon">→</div>
+        <div class="final-pillar-title">Conversão</div>
+        <div class="final-pillar-desc">Transformar seguidoras em mulheres que buscam liderança, autonomia e protagonismo.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
